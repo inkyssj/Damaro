@@ -1,0 +1,34 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WhatsApp Bot</title>
+<link rel="stylesheet" href="style.css" />
+<script defer src="auth.js"></script>
+</head>
+<body>
+  <h2>-| WhatsApp Bot |-</h2>
+
+  <div class="authBox" id="authBox">
+    <div id="loginForm" style="display:block;">
+		<h3>Login</h3>
+		<input type="text" id="loginUser" placeholder="Usuario"/>
+		<input type="password" id="loginPass" placeholder="Contraseña"/>
+		<button id="loginBtn">Ingresar</button>
+		<p>¿No tenés cuenta? <a href="#" id="showRegister">Registrate</a></p>
+	</div>
+
+    <div id="registerForm" style="display:none;">
+      <h3>Registro</h3>
+      <input type="text" id="regUser" placeholder="Usuario" />
+      <input type="password" id="regPass" placeholder="Contraseña" />
+      <button id="regBtn">Registrar</button>
+      <p><a href="#" id="showLogin">Volver al login</a></p>
+    </div>
+
+    <p id="authStatus" class="status"></p>
+  </div>
+</body>
+</html>

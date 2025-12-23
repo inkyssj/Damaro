@@ -1,0 +1,75 @@
+<!-- public/panel.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>WhatsApp Bot - Panel</title>
+<link rel="stylesheet" href="style.css" />
+<script src="/socket.io/socket.io.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+  <button id="btnLogout" class="logout" style="float:right;">Cerrar sesión</button>
+  <h2>-| WhatsApp Bot |-</h2>
+
+  <div id="connectionBox" class="status-box">Conectando con WhatsApp...</div>
+
+  <div id="qrContainer" class="qr-container" style="display:none;">
+    <h3>Escaneá el código QR</h3>
+    <div id="qrCode"></div>
+  </div>
+
+  <div class="box" id="excelFileForm" style="display:none;">
+    <h3>> Subir Excel de contactos</h3>
+    <input type="file" id="excelFile" accept=".xlsx" />
+  </div>
+
+  <div class="box" id="fileSendForm" style="display:none;">
+    <h3>> Subir archivo (imagen, video, documento...)</h3>
+    <input type="file" id="fileMedia" />
+    <p id="mediaName"></p>
+  </div>
+
+  <div class="box" id="configSendForm" style="display:none;">
+    <h3>> Configuración de envío</h3>
+    <textarea id="message" rows="4" placeholder="Usá variables {nombre}, {numero}, {interes}..."></textarea><br/><br/>
+    Intervalo entre envíos:
+    <input type="number" id="intervalMin" value="120" min="5" /> a	
+    <input type="number" id="intervalMax" value="180" min="10" /> segundos
+  </div>
+
+  <div class="box" id="btnControl" style="display:none;">
+    <h3>> Control</h3>
+    <button class="start" id="startBtn">Iniciar</button>
+    <button class="pause" id="pauseBtn">Pausar</button>
+    <button class="resume" id="resumeBtn">Reanudar</button>
+    <button class="cancel" id="cancelBtn">Cancelar</button>
+
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+
+    <p class="status" id="status"></p>
+  </div>
+
+  <div class="box" id="contactSend" style="display:none;">
+    <h3>> Contactos</h3>
+    <table id="contactsTable">
+      <thead>
+        <tr>
+          <th>Nombre</th><th>Numero</th><th>Interes</th><th>Estado</th><th>Archivo</th><th>Tiempo</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await fetch('/logout', { method: 'POST' });
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>
